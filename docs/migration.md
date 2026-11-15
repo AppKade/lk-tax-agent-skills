@@ -4,7 +4,7 @@
 
 ## Replacement architecture
 
-Six independently installable skill folders guide the host's conversation. Each contains its own identical bundled one-shot Node helper, applicable code notices and focused references. There is no active MCP transport SDK, server, HTTP endpoint, JSON-RPC protocol, discovery resource, Inspector dependency, connector setup or old-repository download. The helper reads one typed request from stdin, returns a result and explicit case handoff, then exits.
+One self-contained skill guides the host's conversation, with one bundled one-shot Node helper, applicable code notices and focused references. The initial six-folder layout was consolidated to remove duplicated runtimes and overlapping triggers. There is no active MCP transport SDK, server, HTTP endpoint, JSON-RPC protocol, discovery resource, Inspector dependency, connector setup or old-repository download. The helper reads one typed request from stdin, returns a result and explicit case handoff, then exits.
 
 The host handles plain-language intake, selected-document reading, explanation, conversational pacing and any user-requested artifact creation. It cannot calculate an unsupported case, infer missing facts or claim capabilities it lacks. The tested deterministic engine still calculates money and enforces supported scope, consent, evidence reconciliation, credit checks, draft authentication and worksheet acknowledgements. A host unable to execute the helper can organize preparation but cannot produce its estimate.
 
@@ -36,6 +36,10 @@ Review/checklist confirmation is deliberately passed for the exact current works
 
 ## Retirement gate
 
-Publish the replacement, verify its complete tree, recoverable history and passing validation before removing the old repository. Repository deletion is a separate GitHub action and must be checked live. This migration document alone does not assert that the old repository has been deleted.
+The replacement was published and verified before retirement. The maintainer subsequently reported deletion of the old repository. Preserved history remains available locally in this repository, and the skill has no dependency on the retired service.
 
 See `validation.md` for executed coverage and `status.md` for remaining practitioner and installed-host acceptance work.
+
+## Lean skill revision
+
+The five focused skill entry points were removed; their workflows remain directly linked references inside lk-tax-agent. The single helper is byte-identical to the migrated calculator build. Generated consent/fact references let the agent conduct ordinary intake in chat without repeated startup or per-answer script execution. The existing capability/schema operations remain optional compatibility checks, not mandatory conversation steps. No arithmetic, tax rule, consent, provenance or encryption check was removed.

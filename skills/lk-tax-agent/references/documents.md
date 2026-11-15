@@ -11,4 +11,4 @@ Build a compact table of source label, kind, assessment period, gross amount, ta
 7. Resolve duplicates by bytes where available, but equal amounts can come from different real sources. Ask before excluding or marking distinct. A revision replaces an earlier source; it is not additional income. Preserve a pending item when uncertain.
 8. Show reviewed category totals before setting or applying facts. Obtain explicit year, value and source-completeness confirmation. Use the structured ledger only through its documented commands; a host-built table alone does not establish deterministic provenance.
 
-Read runtime.md for optional local extraction, per-document corrections, limits and digest-bound application. Read limits.md for excluded categories. Do not claim universal OCR accuracy, legal eligibility or completed filing.
+Read local-files.md only when optional local extraction is requested, covering, per-document corrections, limits and digest-bound application. Read limits.md for excluded categories. Do not claim universal OCR accuracy, legal eligibility or completed filing.

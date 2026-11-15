@@ -1,4 +1,0 @@
-interface:
-  display_name: "Tax Estimate"
-  short_description: "Calculate supported Sri Lankan tax estimates"
-  default_prompt: "Use $lk-tax-estimate to help me with my Sri Lankan personal tax preparation."
