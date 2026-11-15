@@ -1,0 +1,10 @@
+{
+  "version": "0.1.0-preview.1",
+  "sha256": "d85a15a65a81140098fdeddab18661d2d53256ff8de89cac7acb8020dfa2c4bb",
+  "node": ">=22.18.0",
+  "annual_rules": "2025.26.3",
+  "instalment_rules": "2026.27.1",
+  "mapping": "2025.26.cages.1",
+  "runtime_dependencies": [],
+  "network_access": false
+}

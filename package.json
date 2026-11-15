@@ -1,0 +1,31 @@
+{
+  "name": "@appkade/lk-tax-agent-skills",
+  "version": "0.1.0-preview.1",
+  "private": true,
+  "description": "Sri Lankan tax preparation skills with a standalone deterministic calculator",
+  "type": "module",
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "scripts": {
+    "build": "node scripts/build-skills.ts",
+    "check": "tsc --noEmit",
+    "test": "node --test test/*.test.ts",
+    "rules:check": "node scripts/check-rules.ts",
+    "skills:check": "node scripts/check-skills.ts",
+    "test:journeys": "node scripts/check-agent-journeys.ts",
+    "test:documents": "node scripts/check-document-flow.ts",
+    "audit": "npm audit --audit-level=high"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AppKade/lk-tax-agent-skills.git"
+  },
+  "devDependencies": {
+    "@types/node": "24.10.4",
+    "esbuild": "0.25.12",
+    "typescript": "5.7.3",
+    "zod": "4.6.7"
+  },
+  "license": "MIT"
+}

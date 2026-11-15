@@ -1,0 +1,111 @@
+{
+  "source_repository": "AppKade/lk-tax-mcp",
+  "source_head": "edc37c9f895f24c2d65f9029cb47fa72f69d3233",
+  "created_on": "2026-11-15",
+  "unchanged_calculation_and_evidence_files": [
+    {
+      "path": "src/money.ts",
+      "sha256": "9bae65d82da394327a45bb475ff6596312232abec8419dd5a97256265489a4d3",
+      "unchanged_from_source": true
+    },
+    {
+      "path": "src/rules.ts",
+      "sha256": "f41d55de16fe1629cd9ac12f45e4e26863ecc41b7d8c028e71f5ee0ae0c05270",
+      "unchanged_from_source": true
+    },
+    {
+      "path": "src/scope.ts",
+      "sha256": "87c26612f7e5853621b54a1730b43d18bdf0562a2c44e5e883ce05d9aef93b07",
+      "unchanged_from_source": true
+    },
+    {
+      "path": "src/engine.ts",
+      "sha256": "f3213fedb9ff67bcb90886a814fd94d12b4880de9e1ede7dc043a6bd309d6a41",
+      "unchanged_from_source": true
+    },
+    {
+      "path": "src/foreign.ts",
+      "sha256": "11f794ee2a2a7c6e6c33e7a160f29ee5fd8a9e0335800aac1aa249c9d19f227c",
+      "unchanged_from_source": true
+    },
+    {
+      "path": "src/interview.ts",
+      "sha256": "bb2f815e81dacfefe9466b6e2367d4c6c584dc9b7b26ae148bd16ce2cf1c9bfa",
+      "unchanged_from_source": true
+    },
+    {
+      "path": "src/instalments.ts",
+      "sha256": "dbe5d774f02eff2ff4bb64076ad0cb65c47859ce57cc0923095beee34acae706",
+      "unchanged_from_source": true
+    },
+    {
+      "path": "src/return-review.ts",
+      "sha256": "aa18de8ca3c8bfa3c3d95616e55b1df871f292091726e936dd84b436ef5decb2",
+      "unchanged_from_source": true
+    },
+    {
+      "path": "src/worksheet.ts",
+      "sha256": "af91878fc15ec497d62380e49e21c5596f8f999feef7d06d3651f3a750841399",
+      "unchanged_from_source": true
+    },
+    {
+      "path": "src/evidence.ts",
+      "sha256": "5014299a29c9f3c4cee5f1892decb8afb6e5796b16e828bf370828c848f22a72",
+      "unchanged_from_source": true
+    },
+    {
+      "path": "src/local-files.ts",
+      "sha256": "dd41eaa5d52bef4584ec2629db76fdc79d073504a0bcd72926272e3bc0465331",
+      "unchanged_from_source": true
+    },
+    {
+      "path": "src/privacy.ts",
+      "sha256": "6d63a21b53a42141c8e54c4e218c71524076132245c341d75f46307bcccfc01b",
+      "unchanged_from_source": true
+    },
+    {
+      "path": "rules/2025-26.json",
+      "sha256": "49993720f8c93e4b49d47bb4d487658453e3f32f08cf986b6843e18705cf47cc",
+      "unchanged_from_source": true
+    },
+    {
+      "path": "rules/cages-2025-26.json",
+      "sha256": "a1f28cccc0d825a65569fce79d40c173738ccf2ef3e12c3c49b0ee4414025cc4",
+      "unchanged_from_source": true
+    },
+    {
+      "path": "rules/history/annual/2025.26.3.json",
+      "sha256": "49993720f8c93e4b49d47bb4d487658453e3f32f08cf986b6843e18705cf47cc",
+      "unchanged_from_source": true
+    },
+    {
+      "path": "rules/history/cages/2025.26.cages.1.json",
+      "sha256": "a1f28cccc0d825a65569fce79d40c173738ccf2ef3e12c3c49b0ee4414025cc4",
+      "unchanged_from_source": true
+    },
+    {
+      "path": "rules/history/instalments/2026.27.1.json",
+      "sha256": "d7bddd80902a56a297dd2c1f83212f9f4ac428ba3fb9b6063008d9ec4e164bb7",
+      "unchanged_from_source": true
+    },
+    {
+      "path": "rules/history.json",
+      "sha256": "cd6d36f74741f575e8898445309fd99200989f604bf95880eb539f0f95f30e18",
+      "unchanged_from_source": true
+    },
+    {
+      "path": "rules/instalments-2026-27.json",
+      "sha256": "d7bddd80902a56a297dd2c1f83212f9f4ac428ba3fb9b6063008d9ec4e164bb7",
+      "unchanged_from_source": true
+    }
+  ],
+  "history_bundle_sha256": "4998a131632e9605f02505cd66a40aac24a67b7dd1744c5929ce88410732e2de",
+  "new_architecture": "Six independently installable skills with a bundled one-shot Node.js calculator; no server, transport, connector or runtime npm install.",
+  "selected_finalization_changes": {
+    "source_commit": "b8488f666b7da973197349b4659f7afc5fee8075",
+    "pull_request": 21,
+    "license": "MIT, maintainer-selected in source finalization work",
+    "bundled_zod": "4.6.7",
+    "note": "Transport-specific changes were not imported. Both branches remain in source-history.bundle."
+  }
+}
