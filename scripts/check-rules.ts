@@ -17,7 +17,11 @@ if (base) {
   if (exists) validateRuleTransition(validateRuleHistory(previousRead('rules/history.json'), previousRead), history);
   else {
     // First adoption must preserve every previously governed active value.
-    for (const family of ['annual', 'cages'] as const) {
+    for (const family of Object.keys(ruleFamilies) as (keyof typeof ruleFamilies)[]) {
+      const present = execFileSync('git', ['ls-tree', '--name-only', base, ruleFamilies[family].path], { encoding: 'utf8' }).trim();
+      // An empty/new repository has no previous rule value to preserve. Current
+      // payloads and their complete imported history were already validated above.
+      if (!present) continue;
       const old = previousRead(ruleFamilies[family].path);
       const initial = history.entries.find(e => e.family === family)!;
       const { digest } = await import('./contract.ts');
