@@ -1,0 +1,4 @@
+interface:
+  display_name: "Tax Instalment Planner"
+  short_description: "Plan supported quarterly income tax estimates"
+  default_prompt: "Use $lk-tax-instalments to help me with my Sri Lankan personal tax preparation."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Tax Review and Worksheet"
+  short_description: "Review evidence and prepare a tax worksheet"
+  default_prompt: "Use $lk-tax-review to help me with my Sri Lankan personal tax preparation."

@@ -1,0 +1,56 @@
+name: Skills and calculator
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [22, 24]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - run: npm ci --ignore-scripts
+      - run: npm run audit
+      - run: npm run check
+      - run: npm run build
+      - run: git diff --exit-code -- skills
+      - run: npm run skills:check
+      - run: npm run rules:check
+      - run: npm test
+      - name: Preserve published rule history
+        if: github.event_name == 'pull_request'
+        env:
+          RULE_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: npm run rules:check -- "$RULE_BASE_SHA"
+  standalone:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        node: [22, 24]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - run: npm ci --ignore-scripts
+      - run: npm run test:journeys
+  documents:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr tesseract-ocr-eng
+      - run: npm ci --ignore-scripts
+      - run: npm run test:documents

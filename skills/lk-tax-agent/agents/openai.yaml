@@ -1,0 +1,4 @@
+interface:
+  display_name: "Sri Lanka Tax Agent"
+  short_description: "Guide an individual through tax preparation"
+  default_prompt: "Use $lk-tax-agent to help me with my Sri Lankan personal tax preparation."

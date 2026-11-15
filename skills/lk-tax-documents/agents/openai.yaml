@@ -1,0 +1,4 @@
+interface:
+  display_name: "Tax Document Review"
+  short_description: "Reconcile salary, bank and business tax records"
+  default_prompt: "Use $lk-tax-documents to help me with my Sri Lankan personal tax preparation."
