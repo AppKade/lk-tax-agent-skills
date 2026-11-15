@@ -1,4 +1,0 @@
-interface:
-  display_name: "Tax Save and Resume"
-  short_description: "Save and restore an encrypted tax preparation case"
-  default_prompt: "Use $lk-tax-save-resume to help me with my Sri Lankan personal tax preparation."

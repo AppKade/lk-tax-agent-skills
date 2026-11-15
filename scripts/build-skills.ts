@@ -1,20 +1,28 @@
 import { build } from 'esbuild';
-import { readdirSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
+import { DISCLAIMER, DISCLAIMER_VERSION } from '../src/service.ts';
+import { factDictionary } from '../src/interview.ts';
+import { rules } from '../src/rules.ts';
+import { instalmentRules } from '../src/instalments.ts';
+import { cageMap } from '../src/return-review.ts';
 const root=fileURLToPath(new URL('..',import.meta.url));
 const built=await build({absWorkingDir:root,entryPoints:['src/cli.ts'],bundle:true,platform:'node',target:'node22.18',format:'esm',write:false,minify:true,legalComments:'inline',metafile:true});
-const inputs=Object.keys(built.metafile.inputs);
-if(inputs.some(p=>p.includes('modelcontextprotocol')))throw new Error('Unexpected transport dependency');
+if(Object.keys(built.metafile.inputs).some(p=>p.includes('modelcontextprotocol')))throw new Error('Unexpected transport dependency');
 const code=built.outputFiles[0].text;
 const sha256=createHash('sha256').update(code).digest('hex');
 const license=readFileSync(new URL('../node_modules/zod/LICENSE',import.meta.url),'utf8');
 const projectLicense=readFileSync(new URL('../LICENSE',import.meta.url),'utf8');
 const core=JSON.parse(readFileSync(new URL('../package.json',import.meta.url),'utf8'));
-for(const skill of readdirSync(new URL('../skills',import.meta.url))){
- const base=new URL(`../skills/${skill}/`,import.meta.url);mkdirSync(new URL('scripts',base),{recursive:true});
- writeFileSync(new URL('scripts/tax.mjs',base),code);
- writeFileSync(new URL('references/third-party-notices.md',base),'# Project and third-party notices\n\n'+projectLicense+'\n\nThe standalone calculator includes Zod '+core.devDependencies.zod+' under its MIT license.\n\n'+license);
- writeFileSync(new URL('references/runtime-manifest.json',base),JSON.stringify({version:core.version,sha256,node:core.engines.node,annual_rules:'2025.26.3',instalment_rules:'2026.27.1',mapping:'2025.26.cages.1',runtime_dependencies:[],network_access:false},null,2)+'\n');
-}
-process.stdout.write(`Built six standalone skill helpers (${Buffer.byteLength(code)} bytes each), SHA-256 ${sha256}\n`);
+const base=new URL('../skills/lk-tax-agent/',import.meta.url);mkdirSync(new URL('scripts',base),{recursive:true});
+writeFileSync(new URL('scripts/tax.mjs',base),code);
+writeFileSync(new URL('references/third-party-notices.md',base),'# Project and third-party notices\n\n'+projectLicense+'\n\nThe standalone calculator includes Zod '+core.devDependencies.zod+' under its MIT license.\n\n'+license);
+writeFileSync(new URL('references/runtime-manifest.json',base),JSON.stringify({version:core.version,sha256,node:core.engines.node,annual_rules:rules.version,instalment_rules:instalmentRules.version,mapping:cageMap.version,runtime_dependencies:[],network_access:false},null,2)+'\n');
+writeFileSync(new URL('references/consent.md',base),`# Tax preparation notice\n\nVersion: ${DISCLAIMER_VERSION}\n\nShow the following notice verbatim and obtain explicit agreement before financial intake or selected-file inspection. Reuse actual agreement to this version within the current conversation. No script execution is needed to display it.\n\n${DISCLAIMER}\n`);
+const groups=['scope','income','foreign','deductions'];
+const fields=factDictionary.filter(f=>f.required_by_schema);
+const lines=['# Confirmed-fact questions','','Read the relevant group while preparing a case in chat. Ask at most three ordinary questions at a time. Do not read field ids to the user, infer an unknown amount as zero or an absent boolean as false. Store amounts as decimal LKR strings. Confirm every value before supplying it to the calculator. This reference is generated from its actual field definitions.','','## Contents','',...groups.map(g=>`- ${g}`),'','## Dependencies','','Confirm required scope answers unless a known exclusion stops the case. Optional legacy band/credit hints are derived by code and are intentionally omitted here. Stop if taxable business profit still needs preparation.','','All income amounts, the three foreign monetary selectors and deductions need explicit confirmation, including zeros. After the foreign amounts are known: positive foreign income requires currency receipt, licensed-bank remittance and conversion confirmation; salary additionally requires the foreign-employer confirmation and services require use outside Sri Lanka. Positive foreign tax also requires credit eligibility and one-source/one-country confirmation. Skip only foreign booleans proven inapplicable from confirmed amounts; never guess the monetary selectors.','','Use interview only when validating a prepared case, resolving dependency uncertainty or checking a correction. It reports current missing facts and any blocker; do not invoke a script for each ordinary answer.'];
+for(const group of groups){lines.push('',`## ${group}`,'');for(const f of fields.filter(f=>f.path.startsWith(group+'.')))lines.push(`- **${f.path}** (${f.type}): ${f.description}`);}
+writeFileSync(new URL('references/facts.md',base),lines.join('\n')+'\n');
+process.stdout.write(`Built one standalone skill helper (${Buffer.byteLength(code)} bytes), SHA-256 ${sha256}; generated consent and fact references.\n`);

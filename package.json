@@ -1,6 +1,6 @@
 {
   "name": "@appkade/lk-tax-agent-skills",
-  "version": "0.1.0-preview.1",
+  "version": "0.1.0-preview.2",
   "private": true,
   "description": "Sri Lankan tax preparation skills with a standalone deterministic calculator",
   "type": "module",

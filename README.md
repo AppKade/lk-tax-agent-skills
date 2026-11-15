@@ -1,25 +1,27 @@
 # Sri Lanka Tax Agent Skills
 
-Six chat-oriented skills for preparing a Sri Lankan individual's tax estimate, reviewing records, explaining results and producing a manual-entry worksheet. Each skill includes a standalone deterministic calculator. There is no MCP server, connector, API deployment or background service.
+One chat-oriented skill for preparing a Sri Lankan individual's tax estimate, reviewing records, explaining results and producing a manual-entry worksheet. Focused references support each workflow; one bundled helper performs calculations and deterministic checks. There is no MCP server, connector, API deployment or background service.
 
 **Development preview. Not IRD-approved. Not tax advice. Not ready for filing.**
 
-## Choose a skill
+## One skill, focused workflows
 
-| Skill | Purpose |
+Install [lk-tax-agent](skills/lk-tax-agent) as a complete folder. It handles the full supported workflow and loads only the references relevant to the user's next step.
+
+| Workflow | Reference |
 |---|---|
-| [lk-tax-agent](skills/lk-tax-agent) | Start here for the complete guided preparation workflow |
-| [lk-tax-documents](skills/lk-tax-documents) | Review records, gross/net amounts, years, duplicates, revisions and missing evidence |
-| [lk-tax-estimate](skills/lk-tax-estimate) | Prepare and explain supported annual estimates |
-| [lk-tax-review](skills/lk-tax-review) | Reconcile a current estimate, review remaining work and produce a worksheet |
-| [lk-tax-instalments](skills/lk-tax-instalments) | Plan supported quarterly instalment estimates |
-| [lk-tax-save-resume](skills/lk-tax-save-resume) | Save, restore and delete optional encrypted local drafts |
+| Intake and scope | Generated consent and fact questions, plus supported-case limits |
+| Documents | Host-based record reading and source reconciliation |
+| Estimates | One bundled calculator for validated arithmetic and explanations |
+| Final review | Current checklist, remaining gaps and worksheet |
+| Instalments | Separate current-year scope, basis and credit checks |
+| Save/resume | Explicit host-managed handoff, with optional local encryption |
 
-Each folder is independently installable. Its SKILL.md, references, agent metadata and bundled `scripts/tax.mjs` stay together. No sibling skill or old repository is needed. Installing the main skill is enough for the complete supported workflow; the focused skills are alternative entry points.
+The agent asks ordinary questions and reads selected documents through existing host tools. It does not run scripts for every answer or require startup discovery calls. The single `scripts/tax.mjs` helper is used when arithmetic, deterministic validation or explicitly requested local extraction/encryption is needed. No sibling skill or old repository is needed.
 
 ## Try it
 
-1. Clone this repository and install your selected complete skill folder through the host's custom-skill installation mechanism.
+1. Clone this repository and install the complete `skills/lk-tax-agent` folder through the host's custom-skill installation mechanism.
 2. Use a host that can read skill resources and execute local scripts, with Node.js **22.18 or newer** available to its execution environment. The committed helper includes its dependencies and rule data. End users do not need npm install or an npm account.
 3. Ask: "Use lk-tax-agent to help me prepare my personal tax estimate from my salary and bank records. Treat me as a first-time user."
 4. Agree to the displayed terms only if you accept them, then answer the assistant's questions and confirm proposed document amounts. The assistant should ask a few plain-language questions at a time, without exposing JSON, hashes or internal command names.
@@ -40,7 +42,7 @@ The final command is a **synthetic demonstration**, not your tax return. Its fix
 
 Annual estimates cover **YA 2025/26**. Quarterly planning separately covers **YA 2026/27**. Local annual inputs include salary, externally prepared taxable business net profit, bank interest, gross investment rent, supported deductions and actual credits. Supported final-withholding dividends are informational. Qualifying foreign salary/net services must already be converted to LKR and meet the explicit eligibility and single-source/single-country credit checks.
 
-The agent does not prepare taxable business profit from invoices/expenses, calculate company tax, handle loss claims, partnerships, special residency, terminal benefits, nonqualifying foreign income or multi-country credits, determine filing obligations, submit returns, make payments or access RAMIS. Foreign-income allocation/stacking and official rounding remain unreviewed. Read each skill's `references/limits.md` for the full boundaries. Packaging the workflow as skills does not expand tax support or establish practitioner approval.
+The agent does not prepare taxable business profit from invoices/expenses, calculate company tax, handle loss claims, partnerships, special residency, terminal benefits, nonqualifying foreign income or multi-country credits, determine filing obligations, submit returns, make payments or access RAMIS. Foreign-income allocation/stacking and official rounding remain unreviewed. Read the skill's `references/limits.md` for the full boundaries. Packaging the workflow as skills does not expand tax support or establish practitioner approval.
 
 ## Documents, state and privacy
 
@@ -63,6 +65,10 @@ npm run test:journeys
 npm run test:documents
 ```
 
-Only maintainers need these dependencies. The document gate requires local Poppler/Tesseract. `npm run build` produces identical standalone helpers in each skill, including Zod with its MIT notice. Commit rebuilt helpers and manifests together with source changes. CI checks reproducible builds, source/rule provenance, standalone journeys across Linux/macOS/Windows on Node 22/24, and native document processing on Linux.
+Only maintainers need these dependencies. The document gate requires local Poppler/Tesseract. `npm run build` produces one standalone helper and generates the consent/intake references from the same definitions, including Zod with its MIT notice. Commit rebuilt helper, manifest and generated references together with source changes. CI checks reproducible builds, source/rule provenance, standalone journeys across Linux/macOS/Windows on Node 22/24, and native document processing on Linux.
 
 See [validation results](docs/validation.md), [migration record](docs/migration.md), [rule governance](docs/rules-governance.md) and [remaining work](docs/status.md). Source/rule verification dates remain recorded in the rule files; a packaging date is not a new legal verification date. Original AppKade code uses the [MIT license](LICENSE), carried forward from the maintainer-selected license in the finalization branch. Zod and externally referenced tax publications retain their own terms. Each standalone skill includes the applicable code notices. The package remains private and unpublished to npm.
+
+## Updating the initial six-skill layout
+
+Replace your installed main skill with the complete current folder and disable any previously installed focused duplicates through your host. Their workflows now live in the main skill references. Updating this repository does not automatically edit personal skills already installed elsewhere.

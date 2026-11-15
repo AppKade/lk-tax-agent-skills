@@ -1,6 +1,6 @@
 # Security and privacy
 
-This is a tax-preparation development preview with six independently installable skills and an offline one-shot Node.js helper. It has no server, network listener, connector registration or runtime network requests. The host remains responsible for model execution, tools, document handling and conversation/file retention. These are separate from the calculator process.
+This is a tax-preparation development preview with one self-contained skill and an offline one-shot Node.js helper. It has no server, network listener, connector registration or runtime network requests. The host remains responsible for model execution, tools, document handling and conversation/file retention. These are separate from the calculator process.
 
 ## Inputs and trust
 

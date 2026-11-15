@@ -42,7 +42,7 @@ try {
   writeFileSync(join(root,'scan.pdf'),imagePdf);
   copyFileSync(join(root,'bank.pdf'),join(root,'same-bytes.pdf'));
   const env={...process.env,LK_TAX_DOCUMENT_ROOT:root,LK_TAX_DRAFT_ROOT:join(root,'drafts'),LK_TAX_DRAFT_KEY_FILE:join(root,'key')};
-  const script=join(import.meta.dirname,'../skills/lk-tax-documents/scripts/tax.mjs');
+  const script=join(import.meta.dirname,'../skills/lk-tax-agent/scripts/tax.mjs');
   let current:unknown;let consent:unknown;let count=0;
   function call(operation:string,extra:Record<string,unknown>={}) {
     const p=spawnSync(process.execPath,[script,operation],{cwd:root,env,input:JSON.stringify({...(consent?{consent}:{}),...(current?{case:current}:{}),...extra}),encoding:'utf8',timeout:35000});

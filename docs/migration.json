@@ -100,12 +100,18 @@
     }
   ],
   "history_bundle_sha256": "4998a131632e9605f02505cd66a40aac24a67b7dd1744c5929ce88410732e2de",
-  "new_architecture": "Six independently installable skills with a bundled one-shot Node.js calculator; no server, transport, connector or runtime npm install.",
+  "new_architecture": "One self-contained tax-agent skill with focused references and one bundled one-shot Node.js calculator; no server, transport, connector or runtime npm install.",
   "selected_finalization_changes": {
     "source_commit": "b8488f666b7da973197349b4659f7afc5fee8075",
     "pull_request": 21,
     "license": "MIT, maintainer-selected in source finalization work",
     "bundled_zod": "4.6.7",
     "note": "Transport-specific changes were not imported. Both branches remain in source-history.bundle."
+  },
+  "packaging_revision": {
+    "version": "0.1.0-preview.2",
+    "change": "Consolidate six overlapping skill entry points into one; generate static consent/intake references and avoid mandatory startup/per-answer helper calls.",
+    "bundled_runtime_scripts_before": 6,
+    "bundled_runtime_scripts_after": 1
   }
 }

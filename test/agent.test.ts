@@ -63,8 +63,8 @@ test('request errors never echo identifiers, arbitrary keys or malformed monetar
   assert.equal(run('normalize',{consent,value:'-1200'}).error.code,'AMOUNT_FORMAT');
 });
 
-for(const name of ['lk-tax-agent','lk-tax-documents','lk-tax-estimate','lk-tax-review','lk-tax-instalments','lk-tax-save-resume'])
- test(`${name} runs in isolation without checkout modules or a server`,t=>{
+test('the complete tax skill runs in isolation without checkout modules or a server',t=>{
+  const name='lk-tax-agent';
   const root=mkdtempSync(join(tmpdir(),'lk-tax-isolated-'));t.after(()=>rmSync(root,{recursive:true,force:true}));
   cpSync(new URL(`../skills/${name}`,import.meta.url),join(root,'skill'),{recursive:true});
   const script=join(root,'skill/scripts/tax.mjs');
